@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms and Conditions - AI Career Counselor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ========== Reset & Base Styles ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #8b5cf6;
+            --accent-color: #06b6d4;
+            --background-dark: #0f172a;
+            --background-darker: #020617;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --shadow-neon: 0 0 20px rgba(99, 102, 241, 0.5);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--background-darker);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* ========== Background Animation ========== */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .circle-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--primary-color);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .circle-2 {
+            width: 300px;
+            height: 300px;
+            background: var(--secondary-color);
+            bottom: 20%;
+            right: 10%;
+            animation-delay: 7s;
+        }
+
+        .circle-3 {
+            width: 350px;
+            height: 350px;
+            background: var(--accent-color);
+            top: 50%;
+            left: 50%;
+            animation-delay: 14s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(30px, 50px) scale(1.1); }
+            50% { transform: translate(-30px, 30px) scale(0.9); }
+            75% { transform: translate(50px, -30px) scale(1.05); }
+        }
+
+        /* ========== Navigation ========== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: var(--spacing-sm) 0;
+        }
+
+        .navbar .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            font-size: 1.5rem;
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-neon);
+        }
+
+        /* ========== Main Content ========== */
+        .main-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 120px var(--spacing-md) var(--spacing-lg);
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .page-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .last-updated {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .content-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .section {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-sm);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-number {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .section-content {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .section-content p {
+            margin-bottom: 1rem;
+        }
+
+        .section-content ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-content li {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .section-content strong {
+            color: var(--text-primary);
+        }
+
+        .highlight-box {
+            background: rgba(99, 102, 241, 0.1);
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            text-align: center;
+            margin-top: var(--spacing-md);
+        }
+
+        .contact-info h3 {
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .contact-info p {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: var(--primary-color);
+        }
+
+        /* ========== Animations ========== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ========== Responsive Design ========== */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 100px var(--spacing-sm) var(--spacing-md);
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .section-number {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+        }
+
+        /* ========== Scrollbar Styling ========== */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--background-darker);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, var(--secondary-color), var(--primary-color));
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="background-animation">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🎯</span>
+                AI Career Counselor
+            </a>
+            <a href="{% url 'signup'%}" class="back-btn">← Back to Home</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">Terms and Conditions</h1>
+            <p class="last-updated">Last Updated: October 6, 2025</p>
+        </div>
+
+        <div class="content-card">
+            <!-- Section 1 -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="section-number">1</span>
+                    Acceptance of Terms
+                </h2>
+                <div class="section-content">
+                    <p>Welcome to AI Career Counselor. By accessing and using our website and services, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions.</p>
+                    <p>If you do not agree with any part of these terms, you must not use our services. We reserve the right to modify these terms at any time, and your continued use of the platform constitutes acceptance of any changes.</p>
+                </div>
+            </div>
+
+            <!-- Section 2 -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="section-number">2</span>
+                    Services Description
+                </h2>
+                <div class="section-content">
+                    <p>AI Career Counselor provides the following services:</p>
+                    <ul>
+                        <li><strong>Resume Analysis:</strong> AI-powered analysis of your resume to identify skills, strengths, and areas for improvement</li>
+                        <li><strong>Career Recommendations:</strong> Personalized career path suggestions based on your profile and market trends</li>
+                        <li><strong>Skill Gap Analysis:</strong> Identification of skills needed to advance in your desired career path</li>
+                        <li><strong>Upskilling Roadmap:</strong> Customized learning paths and resource recommendations</li>
+                        <li><strong>AI Chat Support:</strong> Interactive guidance and career counseling through our AI assistant</li>
+                    </ul>
+                    <div class="highlight-box">
+                        <strong>Important:</strong> Our services are provided for informational and guidance purposes only. While we strive for accuracy, career decisions should be made with careful consideration of your individual circumstances.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3 -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="section-number">3</span>
+                    User Responsibilities
+                </h2>
+                <div class="section-content">
+                    <p>As a user of our platform, you agree to:</p>
+                    <ul>
+                        <li>Provide accurate and truthful information in your resume and profile</li>
+                        <li>Use the services only for lawful purposes and in accordance with these terms</li>
+                        <li>Not attempt to gain unauthorized access to any part of the platform</li>
+                        <li>Not upload any malicious files, viruses, or harmful code</li>
+                        <li>Not use the platform to harass, abuse, or harm others</li>
+                        <li>Maintain the confidentiality of your account credentials</li>
+                        <li>Not resell, redistribute, or commercialize our services without permission</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Section 4 -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="section-number">4</span>
+                    Privacy and Data Protection
+                </h2>
+                <div class="section-content">
+                    <p>Your privacy is important to us. We collect and process personal information in accordance with our Privacy Policy, which includes:</p>
+                    <ul>
+                        <li>Resume content and uploaded documents</li>
+                        <li>Profile information and preferences</li>
+                        <li>Usage data and interaction patterns</li>
+                        <li>Communication and chat history</li>
+                    </ul>
+                    <p>We implement industry-standard security measures to protect your data. However, no method of transmission over the internet is 100% secure, and we cannot guarantee absolute security.</p>
+                    <p><strong>Data Retention:</strong> We retain your data for as long as your account is active or as needed to provide services. You may request deletion of your data at any time.</p>
+                </div>
+            </div>
+
+            <!-- Section 5 -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="section-number">5</span>
+                    Intellectual Property Rights
+                </h2>
+                <div class="section-content">
+                    <p>All content, features, and functionality on AI Career Counselor, including but not limited to text, graphics, logos, icons, images, audio clips, software, and data compilations, are the exclusive property of AI Career Counselor or its licensors.</p>
+                    <p><strong>User Content:</strong> You retain ownership of any content you upload (such as your resume). By uploading content, you grant us a limited license to use, process, and analyze it solely for the purpose of providing our services.</p>
+                    <p><strong>AI-Generated Content:</strong> Analysis results, recommendations, and guidance generated by our AI systems are provided to you for your personal use. You may not reproduce or distribute this content without attribution.</p>
+                </div>
+            </div>
+
+            <!-- Section 6 -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="section-number">6</span>
+                    Disclaimer of Warranties
+                </h2>
+                <div class="section-content">
+                    <p>Our services are provided "as is" and "as available" without any warranties of any kind, either express or implied, including but not limited to:</p>
+                    <ul>
+                        <li>Accuracy, completeness, or reliability of career recommendations</li>
+                        <li>Suitability of suggested career paths for your individual circumstances</li>
+                        <li>Guarantee of employment or career advancement</li>
+                        <li>Uninterrupted or error-free operation of the platform</li>
+                    </ul>
+                    <div class="highlight-box">
+                        <strong>Career Guidance Disclaimer:</strong> AI Career Counselor provides general career guidance and should not be considered professional career counseling or vocational advice. Decisions regarding your career should be made in consultation with qualified professionals and consideration of your unique situation.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 7 -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="section-number">7</span>
+                    Limitation of Liability
+                </h2>
+                <div class="section-content">
+                    <p>To the fullest extent permitted by law, AI Career Counselor shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to:</p>
+                    <ul>
+                        <li>Loss of profits, revenue, or business opportunities</li>
+                        <li>Career decisions made based on our recommendations</li>
+                        <li>Data loss or corruption</li>
+                        <li>Cost of substitute services</li>
+                        <li>Personal or professional harm resulting from use of our services</li>
+                    </ul>
+                    <p>Our total liability for any claims arising from your use of the services shall not exceed the amount you paid for the services in the twelve months preceding the claim.</p>
+                </div>
+            </div>
+
+            <!-- Section 8 -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="section-number">8</span>
+                    Account Termination
+                </h2>
+                <div class="section-content">
+                    <p>We reserve the right to suspend or terminate your account and access to our services at any time, without prior notice, for:</p>
+                    <ul>
+                        <li>Violation of these Terms and Conditions</li>
+                        <li>Fraudulent, abusive, or illegal activity</li>
+                        <li>Extended periods of inactivity</li>
+                        <li>Request from law enforcement or government agencies</li>
+                    </ul>
+                    <p>Upon termination, your right to use the services will immediately cease. We may delete your account data in accordance with our data retention policies.</p>
+                </div>
+            </div>
+
+            <!-- Section 9 -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="section-number">9</span>
+                    Third-Party Links and Services
+                </h2>
+                <div class="section-content">
+                    <p>Our platform may contain links to third-party websites, resources, or services that are not owned or controlled by AI Career Counselor. We are not responsible for:</p>
+                    <ul>
+                        <li>The content, privacy policies, or practices of third-party sites</li>
+                        <li>Any damages or losses arising from your use of third-party services</li>
+                        <li>The accuracy or availability of external resources</li>
+                    </ul>
+                    <p>We recommend reviewing the terms and privacy policies of any third-party services you access through our platform.</p>
+                </div>
+            </div>
+
+            <!-- Section 10 -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="section-number">10</span>
+                    Governing Law and Dispute Resolution
+                </h2>
+                <div class="section-content">
+                    <p>These Terms and Conditions shall be governed by and construed in accordance with the laws of [Your Jurisdiction], without regard to its conflict of law provisions.</p>
+                    <p><strong>Dispute Resolution:</strong> Any disputes arising from these terms or your use of our services shall be resolved through:</p>
+                    <ul>
+                        <li>Good faith negotiations between the parties</li>
+                        <li>Mediation, if negotiations fail</li>
+                        <li>Binding arbitration as a final resort</li>
+                    </ul>
+                    <p>You agree to waive any right to participate in class-action lawsuits or class-wide arbitration.</p>
+                </div>
+            </div>
+
+            <!-- Section 11 -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="section-number">11</span>
+                    Changes to Terms
+                </h2>
+                <div class="section-content">
+                    <p>We reserve the right to modify or replace these Terms and Conditions at any time. Changes will be effective immediately upon posting to the platform.</p>
+                    <p>We will notify users of material changes through:</p>
+                    <ul>
+                        <li>Email notification to registered users</li>
+                        <li>Prominent notice on the platform</li>
+                        <li>In-app notifications</li>
+                    </ul>
+                    <p>Your continued use of the platform after changes are posted constitutes acceptance of the updated terms.</p>
+                </div>
+            </div>
+
+            <!-- Section 12 -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="section-number">12</span>
+                    Miscellaneous
+                </h2>
+                <div class="section-content">
+                    <p><strong>Severability:</strong> If any provision of these terms is found to be unenforceable, the remaining provisions will remain in full force and effect.</p>
+                    <p><strong>Entire Agreement:</strong> These Terms and Conditions, together with our Privacy Policy, constitute the entire agreement between you and AI Career Counselor.</p>
+                    <p><strong>No Waiver:</strong> Our failure to enforce any right or provision of these terms will not be considered a waiver of those rights.</p>
+                    <p><strong>Assignment:</strong> You may not assign or transfer these terms without our written consent. We may assign our rights and obligations without restriction.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="contact-info">
+            <h3>Questions About Our Terms?</h3>
+            <p>If you have any questions or concerns about these Terms and Conditions, please contact us:</p>
+            <p><strong>Email:</strong> <a href="mailto:legal@aicareercounselor.com">legal@aicareercounselor.com</a></p>
+            <p><strong>Support:</strong> <a href="mailto:support@aicareercounselor.com">support@aicareercounselor.com</a></p>
+            <p><strong>Address:</strong> 123 Tech Street, Innovation City, IC 12345</p>
+        </div>
+    </main>
+</body>
+</html>

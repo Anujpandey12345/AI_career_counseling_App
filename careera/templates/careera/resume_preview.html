@@ -1,0 +1,154 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ resume.full_name }} - Resume</title>
+    <style>
+        body {
+            font-family: "Poppins", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .resume {
+            background-color: white;
+            max-width: 800px;
+            margin: auto;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        hr {
+            border: none;
+            height: 2px;
+            background-color: #0078D7;
+            margin: 20px 0;
+        }
+
+        h2 {
+            color: #0078D7;
+            font-size: 20px;
+            margin-top: 25px;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 4px;
+        }
+
+        .contact {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .contact a {
+            color: #0078D7;
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 8px;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .download-btn {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #0078D7;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #005fa3;
+        }
+
+        @media print {
+            body {
+                background: none;
+                padding: 0;
+            }
+            .resume {
+                box-shadow: none;
+                border: none;
+            }
+            .download-btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="resume">
+        <h1>{{ resume.full_name }}</h1>
+        <div class="contact">
+            <p>
+                {{ resume.email }} | {{ resume.phone }} | {{ resume.location }}
+                {% if resume.linkedin %}
+                    | <a href="{{ resume.linkedin }}" target="_blank">LinkedIn</a>
+                {% endif %}
+                {% if resume.portfolio %}
+                    | <a href="{{ resume.portfolio }}" target="_blank">Portfolio</a>
+                {% endif %}
+            </p>
+        </div>
+
+        <hr>
+
+        <div class="section">
+            <h2>Professional Summary</h2>
+            <p>{{ resume.summary }}</p>
+        </div>
+
+        <div class="section">
+            <h2>Experience</h2>
+            <p>{{ resume.experience }}</p>
+        </div>
+
+        <div class="section">
+            <h2>Education</h2>
+            <p>{{ resume.education }}</p>
+        </div>
+
+        <div class="section">
+            <h2>Skills</h2>
+            <p>{{ resume.skills }}</p>
+        </div>
+
+        <div class="section">
+            <h2>Certifications</h2>
+            <p>{{ resume.certifications }}</p>
+        </div>
+
+        <div class="download-btn">
+            <a href="{% url 'download_pdf' resume.id %}" class="btn">Download as PDF</a>
+        </div>
+    </div>
+</body>
+</html>

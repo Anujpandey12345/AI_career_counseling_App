@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Resume Builder</title>
+    <link rel="stylesheet" href="{% static 'careera/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>AI Resume Builder</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {% if ai_summary %}
+                <h3>AI Generated Summary</h3>
+                <div class="ai-box">{{ ai_summary }}</div>
+            {% endif %}
+            <button type="submit" name="generate_summary">✨ Generate AI Summary</button>
+            <button type="submit" name="preview">Preview Resume</button>
+        </form>
+    </div>
+</body>
+</html>

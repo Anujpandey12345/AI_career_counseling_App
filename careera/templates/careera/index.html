@@ -1,0 +1,291 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Career Counselor - Your Future Starts Here</title>
+    <link rel="stylesheet" href="{% static 'careera/style.css' %}">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Background Animation -->
+    <div class="background-animation">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">🤖</span>
+                <span class="logo-text">AI Career Counselor</span>
+            </div>
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#features">Features</a>
+                <a href="#upload">Get Started</a>
+                <a href="{% url 'resume_builder' %}">Resume Builder</a>
+                <a href="https://anujportfolio-two.vercel.app/">Portfolio</a>
+
+                {% if user.is_authenticated %}
+                <a class="nav-auth-username" href="{% url 'logout' %}">{{ user.username }}</a>
+                {% else %}
+                <a class="nav-auth-btn" id="loginBtn" href="{% url 'login' %}">Login</a>
+                {% endif %}
+
+                <a class="nav-auth-btn primary" id="signupBtn" href="{% url 'signup' %}">Sign Up</a>
+            </div>
+
+            <div class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Your AI-Powered Career Guide</h1>
+                <p class="hero-subtitle">Upload your resume. Get smart career suggestions instantly.</p>
+                <div class="hero-buttons">
+                    <button class="cta-button" onclick="scrollToUpload()">Get Started</button>
+                    <button class="cta-button secondary" onclick="window.location.href='resume-builder.html'">Build
+                        Resume</button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">10K+</span>
+                        <span class="stat-label">Resumes Analyzed</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">95%</span>
+                        <span class="stat-label">Accuracy Rate</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Career Paths</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <h2 class="section-title">Powerful AI Features</h2>
+            <div class="features-grid">
+
+                <a href="{% url 'upload_resume' %}" target="_blank" class="feature-card">
+                    <div class="feature-icon">📄</div>
+                    <h3>Resume Parsing</h3>
+                    <p>Advanced AI extracts skills, experience, and qualifications from your resume instantly</p>
+                </a>
+
+
+                <a href="{% url 'upload_resume1' %}" target="_blank" class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Career Suggestions</h3>
+                    <p>Get personalized career recommendations based on your unique profile and market trends</p>
+                </a>
+
+                <a href="https://yourdomain.com/linkedin-summary" target="_blank" class="feature-card">
+                    <div class="feature-icon">💼</div>
+                    <h3>LinkedIn Summary</h3>
+                    <p>Generate compelling professional summaries optimized for LinkedIn visibility</p>
+                </a>
+
+                <a href="https://yourdomain.com/upskilling-paths" target="_blank" class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Upskilling Paths</h3>
+                    <p>Receive customized learning roadmaps to reach your career goals faster</p>
+                </a>
+
+                <a href="https://yourdomain.com/resume-builder" target="_blank" class="feature-card">
+                    <div class="feature-icon">✍️</div>
+                    <h3>Resume Builder</h3>
+                    <p>Create professional resumes with AI-powered suggestions and multiple templates</p>
+                </a>
+
+                <a href="https://yourdomain.com/career-analytics" target="_blank" class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Career Analytics</h3>
+                    <p>Track your career progress and get insights on industry trends</p>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Upload Section
+    <section id="upload" class="upload-section">
+        <div class="container">
+            <h2 class="section-title">Upload Your Resume</h2>
+            <div class="upload-container">
+                <div class="upload-box" id="uploadBox">
+                    <div class="upload-icon">☁️</div>
+                    <p class="upload-text">Drag & Drop your resume here</p>
+                    <p class="upload-subtext">or</p>
+                    <button class="browse-button" onclick="document.getElementById('fileInput').click()">Browse
+                        Files</button>
+                    <input type="file" id="fileInput" accept=".pdf,.doc,.docx" hidden>
+                    <p class="file-info">Supported formats: PDF, DOC, DOCX</p>
+                    <p class="upload-or">Don't have a resume? <a href="resume-builder.html" class="build-link">Build one
+                            now!</a></p>
+                </div>
+                <div class="file-preview" id="filePreview" style="display: none;">
+                    <div class="preview-header">
+                        <span class="preview-icon">📎</span>
+                        <span class="preview-name" id="fileName"></span>
+                        <button class="remove-file" id="removeFile">✕</button>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <button class="analyze-button" id="analyzeButton">
+                        Analyze Resume
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Results Section -->
+    <section id="results" class="results-section" style="display: none;">
+        <div class="container">
+            <h2 class="section-title">Your Career Analysis</h2>
+            <div class="tabs">
+                <button class="tab-button active" data-tab="skills">Skills</button>
+                <button class="tab-button" data-tab="careers">Career Suggestions</button>
+                <button class="tab-button" data-tab="summary">LinkedIn Summary</button>
+                <button class="tab-button" data-tab="upskilling">Upskilling Path</button>
+            </div>
+
+            <div class="tab-content">
+                <!-- Skills Tab -->
+                <div class="tab-panel active" id="skills-panel">
+                    <div class="results-card">
+                        <h3>Extracted Skills</h3>
+                        <div class="skills-container" id="skillsList">
+                            <!-- Skills will be populated by Django backend -->
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Machine Learning</span>
+                            <span class="skill-tag">Data Analysis</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">React</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Careers Tab -->
+                <div class="tab-panel" id="careers-panel">
+                    <div class="results-card">
+                        <h3>Recommended Career Paths</h3>
+                        <div class="careers-list" id="careersList">
+                            <!-- Career suggestions will be populated by Django backend -->
+                            <div class="career-item">
+                                <h4>Data Scientist</h4>
+                                <p>Match: 92%</p>
+                                <p class="career-desc">Analyze complex data and build predictive models</p>
+                            </div>
+                            <div class="career-item">
+                                <h4>Machine Learning Engineer</h4>
+                                <p>Match: 88%</p>
+                                <p class="career-desc">Design and implement ML algorithms</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summary Tab -->
+                <div class="tab-panel" id="summary-panel">
+                    <div class="results-card">
+                        <h3>LinkedIn Professional Summary</h3>
+                        <div class="summary-content" id="summaryText">
+                            <!-- Summary will be generated by Django backend using OpenAI -->
+                            <p>Your AI-generated professional summary will appear here...</p>
+                        </div>
+                        <button class="copy-button">Copy to Clipboard</button>
+                    </div>
+                </div>
+
+                <!-- Upskilling Tab -->
+                <div class="tab-panel" id="upskilling-panel">
+                    <div class="results-card">
+                        <h3>Personalized Learning Path</h3>
+                        <div class="upskilling-roadmap" id="upskillingPath">
+                            <!-- Upskilling recommendations will be populated by Django backend -->
+                            <div class="roadmap-item">
+                                <div class="roadmap-step">1</div>
+                                <div class="roadmap-content">
+                                    <h4>Advanced Python Programming</h4>
+                                    <p>Duration: 4 weeks</p>
+                                </div>
+                            </div>
+                            <div class="roadmap-item">
+                                <div class="roadmap-step">2</div>
+                                <div class="roadmap-content">
+                                    <h4>Deep Learning Specialization</h4>
+                                    <p>Duration: 8 weeks</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Assistant -->
+    <div class="chat-widget" id="chatWidget">
+        <a class="chat-toggle" id="chatToggle" href="{% url 'chat_page' %}" target="_blank">
+            <span class="chat-icon">💬</span>
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>AI Career Counselor</h3>
+                    <p>Empowering careers with artificial intelligence</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="#home">Home</a>
+                    <a href="#features">Features</a>
+                    <a href="#upload">Get Started</a>
+                    <a href="{% url 'resume_builder' %}">Resume Builder</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <a href="https://github.com/yourusername" target="_blank">GitHub</a>
+                    <a href="#">LinkedIn</a>
+                    <a href="#">Twitter</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Built with ❤️ using Django & OpenAI by <strong>Anuj Kumar</strong></p>
+                <p>&copy; 2025 AI Career Counselor. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script src="{% static 'careera/script.js' %}"></script>
+</body>
+
+</html>
