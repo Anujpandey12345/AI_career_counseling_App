@@ -27,7 +27,11 @@ urlpatterns = [
     path('', include("careera.urls")),
     path('', include('chat.urls')),
     path('resume/', include('resume_parser.urls')),
-    path('suggestions/', include('suggestions.urls')),  # ✅ correct line
+    path('suggestions/', include('suggestions.urls')),
+    path('linkdinS/', include('linkdinS.urls')),
+    path('skillup/', include('skillup.urls')),
+    path('career-analytics/', include('ai_career_analytics.urls')),
+
 ]
 
 if settings.DEBUG:

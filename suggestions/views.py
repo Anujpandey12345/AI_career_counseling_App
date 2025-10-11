@@ -6,7 +6,9 @@ from .forms import ResumeForm
 from .models import ResumeS
 from .utils import extract_text_from_resume
 from .ai import get_ai_career_suggestions
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='login')
 def upload_resume1(request):
     if request.method == 'POST':
         form = ResumeForm(request.POST, request.FILES)

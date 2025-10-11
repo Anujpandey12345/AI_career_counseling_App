@@ -30,7 +30,7 @@
             <div class="nav-links">
                 <a href="#">Home</a>
                 <a href="#features">Features</a>
-                <a href="#upload">Get Started</a>
+                <!-- <a href="#upload">Get Started</a> -->
                 <a href="{% url 'resume_builder' %}">Resume Builder</a>
                 <a href="https://anujportfolio-two.vercel.app/">Portfolio</a>
 
@@ -58,25 +58,29 @@
                 <h1 class="hero-title">Your AI-Powered Career Guide</h1>
                 <p class="hero-subtitle">Upload your resume. Get smart career suggestions instantly.</p>
                 <div class="hero-buttons">
-                    <button class="cta-button" onclick="scrollToUpload()">Get Started</button>
-                    <button class="cta-button secondary" onclick="window.location.href='resume-builder.html'">Build
-                        Resume</button>
+                    <div class="hero-buttons">
+                        <a href="#features" class="cta-button">Get Started</a>
+                        <a href="{% url 'resume_builder' %}" class="cta-button secondary">Build Resume</a>
+                    </div>
+
                 </div>
                 <div class="hero-stats">
                     <div class="stat-item">
-                        <span class="stat-number">10K+</span>
-                        <span class="stat-label">Resumes Analyzed</span>
+                        <span id="resume-count" class="stat-number">0</span>
+                        <span class="stat-label">Resumes Parsed</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number">95%</span>
+                        <span id="accuracy-rate" class="stat-number">0%</span>
                         <span class="stat-label">Accuracy Rate</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number">500+</span>
+                        <span id="career-paths" class="stat-number">0</span>
                         <span class="stat-label">Career Paths</span>
                     </div>
                 </div>
             </div>
+        </div>
+        </div>
         </div>
     </section>
 
@@ -99,25 +103,25 @@
                     <p>Get personalized career recommendations based on your unique profile and market trends</p>
                 </a>
 
-                <a href="https://yourdomain.com/linkedin-summary" target="_blank" class="feature-card">
+                <a href="{% url 'linkedin_summary' %}" target="_blank" class="feature-card">
                     <div class="feature-icon">💼</div>
                     <h3>LinkedIn Summary</h3>
                     <p>Generate compelling professional summaries optimized for LinkedIn visibility</p>
                 </a>
 
-                <a href="https://yourdomain.com/upskilling-paths" target="_blank" class="feature-card">
+                <a href="{% url 'skill_up_path' %}" target="_blank" class="feature-card">
                     <div class="feature-icon">🚀</div>
                     <h3>Upskilling Paths</h3>
                     <p>Receive customized learning roadmaps to reach your career goals faster</p>
                 </a>
 
-                <a href="https://yourdomain.com/resume-builder" target="_blank" class="feature-card">
+                <a href="{% url 'resume_builder' %}" target="_blank" class="feature-card">
                     <div class="feature-icon">✍️</div>
                     <h3>Resume Builder</h3>
                     <p>Create professional resumes with AI-powered suggestions and multiple templates</p>
                 </a>
 
-                <a href="https://yourdomain.com/career-analytics" target="_blank" class="feature-card">
+                <a href="{% url 'career_analytics' %}" target="_blank" class="feature-card">
                     <div class="feature-icon">📊</div>
                     <h3>Career Analytics</h3>
                     <p>Track your career progress and get insights on industry trends</p>
@@ -161,7 +165,7 @@
         </div>
     </section> -->
 
-    <!-- Results Section -->
+    <!--  Results Section
     <section id="results" class="results-section" style="display: none;">
         <div class="container">
             <h2 class="section-title">Your Career Analysis</h2>
@@ -173,12 +177,12 @@
             </div>
 
             <div class="tab-content">
-                <!-- Skills Tab -->
+                <!-- Skills Tab 
                 <div class="tab-panel active" id="skills-panel">
                     <div class="results-card">
                         <h3>Extracted Skills</h3>
                         <div class="skills-container" id="skillsList">
-                            <!-- Skills will be populated by Django backend -->
+                            <!-- Skills will be populated by Django backend 
                             <span class="skill-tag">Python</span>
                             <span class="skill-tag">Machine Learning</span>
                             <span class="skill-tag">Data Analysis</span>
@@ -186,14 +190,13 @@
                             <span class="skill-tag">React</span>
                         </div>
                     </div>
-                </div>
-
-                <!-- Careers Tab -->
+                </div> 
+                <!-- Careers Tab 
                 <div class="tab-panel" id="careers-panel">
                     <div class="results-card">
                         <h3>Recommended Career Paths</h3>
                         <div class="careers-list" id="careersList">
-                            <!-- Career suggestions will be populated by Django backend -->
+                            <!-- Career suggestions will be populated by Django backend 
                             <div class="career-item">
                                 <h4>Data Scientist</h4>
                                 <p>Match: 92%</p>
@@ -208,24 +211,24 @@
                     </div>
                 </div>
 
-                <!-- Summary Tab -->
+                <!-- Summary Tab
                 <div class="tab-panel" id="summary-panel">
                     <div class="results-card">
                         <h3>LinkedIn Professional Summary</h3>
                         <div class="summary-content" id="summaryText">
-                            <!-- Summary will be generated by Django backend using OpenAI -->
+                            <!-- Summary will be generated by Django backend using OpenAI 
                             <p>Your AI-generated professional summary will appear here...</p>
                         </div>
                         <button class="copy-button">Copy to Clipboard</button>
                     </div>
                 </div>
 
-                <!-- Upskilling Tab -->
+                <!-- Upskilling Tab
                 <div class="tab-panel" id="upskilling-panel">
                     <div class="results-card">
                         <h3>Personalized Learning Path</h3>
                         <div class="upskilling-roadmap" id="upskillingPath">
-                            <!-- Upskilling recommendations will be populated by Django backend -->
+                            <!-- Upskilling recommendations will be populated by Django backend 
                             <div class="roadmap-item">
                                 <div class="roadmap-step">1</div>
                                 <div class="roadmap-content">
@@ -245,7 +248,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Chat Assistant -->
     <div class="chat-widget" id="chatWidget">
@@ -261,29 +264,49 @@
                 <div class="footer-section">
                     <h3>AI Career Counselor</h3>
                     <p>Empowering careers with artificial intelligence</p>
+                    <br>
+                    <!-- <br> -->
+                    <h5> Get Started with Build Your Resume 🇮🇳⤵↪️ </h5>
                 </div>
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <a href="#home">Home</a>
                     <a href="#features">Features</a>
-                    <a href="#upload">Get Started</a>
+                    <!-- <h5> Get Started with Build Your Resume ⤵️ </h5> -->
                     <a href="{% url 'resume_builder' %}">Resume Builder</a>
                 </div>
                 <div class="footer-section">
                     <h4>Connect</h4>
-                    <a href="https://github.com/yourusername" target="_blank">GitHub</a>
-                    <a href="#">LinkedIn</a>
-                    <a href="#">Twitter</a>
+                    <a href="https://github.com/Anujpandey12345" target="_blank">GitHub</a>
+                    <a href="https://www.linkedin.com/in/anujk01/">LinkedIn</a>
+                    <a href="https://x.com/aanujdotcom">Twitter</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>Built with ❤️ using Django & OpenAI by <strong>Anuj Kumar</strong></p>
+                <p>Built with ❤️ <strong>Anuj Kumar</strong></p>
                 <p>&copy; 2025 AI Career Counselor. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
+    <script>
+        async function loadStats() {
+            try {
+                const response = await fetch("{% url 'stats_api' %}");
+                const data = await response.json();
 
+                document.getElementById("resume-count").innerText = data.total_resumes + "+";
+                document.getElementById("accuracy-rate").innerText = data.accuracy_rate + "%";
+                document.getElementById("career-paths").innerText = data.total_career_paths + "+";
+            } catch (error) {
+                console.error("Error fetching stats:", error);
+            }
+        }
+
+        // Load immediately and refresh every 10 seconds
+        loadStats();
+        setInterval(loadStats, 10000);
+    </script>
 
     <script src="{% static 'careera/script.js' %}"></script>
 </body>

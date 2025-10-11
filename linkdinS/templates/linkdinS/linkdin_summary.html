@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>LinkedIn Summary</title>
+<style>
+body {
+font-family: Poppins, sans-serif;
+background: #1a1a2e;
+padding: 40px;
+text-align: center;
+margin: 0;
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+ }
+h2 {
+color: #ff00ff;
+margin-bottom: 30px;
+font-size: 2.5em;
+ }
+form {
+background: #2a2a3e;
+padding: 40px;
+border-radius: 15px;
+display: inline-block;
+box-shadow: 0 4px 20px rgba(255, 0, 255, 0.2);
+max-width: 600px;
+width: 100%;
+margin: 0 auto 30px;
+ }
+textarea {
+width: 100%;
+height: 200px;
+border-radius: 10px;
+padding: 15px;
+border: 2px solid #7c3aed;
+background: #1a1a2e;
+color: #fff;
+font-family: Poppins, sans-serif;
+box-sizing: border-box;
+margin: 10px 0;
+ }
+textarea:focus {
+outline: none;
+border-color: #ff00ff;
+ }
+.btn {
+background: #7c3aed;
+color: white;
+border: none;
+padding: 12px 30px;
+border-radius: 10px;
+cursor: pointer;
+font-family: Poppins, sans-serif;
+font-size: 16px;
+margin: 10px;
+transition: all 0.3s ease;
+ }
+.btn:hover { 
+background: #ff00ff;
+transform: translateY(-2px);
+box-shadow: 0 4px 15px rgba(255, 0, 255, 0.4);
+ }
+.back-btn {
+background: transparent;
+border: 2px solid #7c3aed;
+color: #fff;
+ }
+.back-btn:hover {
+background: #7c3aed;
+border-color: #7c3aed;
+ }
+h3 {
+color: #00d4ff;
+margin-top: 40px;
+margin-bottom: 20px;
+ }
+.summary-container {
+max-width: 600px;
+width: 100%;
+margin: 0 auto;
+ }
+label {
+color: #fff;
+display: block;
+text-align: left;
+margin-bottom: 8px;
+font-size: 16px;
+ }
+input[type="text"],
+input[type="file"],
+select {
+width: 100%;
+padding: 12px;
+border-radius: 10px;
+border: 2px solid #7c3aed;
+background: #1a1a2e;
+color: #fff;
+font-family: Poppins, sans-serif;
+box-sizing: border-box;
+margin-bottom: 20px;
+ }
+input[type="text"]:focus,
+input[type="file"]:focus,
+select:focus {
+outline: none;
+border-color: #ff00ff;
+ }
+p {
+margin: 15px 0;
+ }
+</style>
+</head>
+<body>
+<h2>AI LinkedIn Summary Generator</h2>
+<form method="POST" enctype="multipart/form-data">
+ {% csrf_token %}
+ {{ form.as_p }}
+<button type="submit" class="btn">Generate Summary</button>
+</form>
+ {% if summary %}
+<div class="summary-container">
+<h3>Your AI LinkedIn Summary:</h3>
+<textarea readonly>{{ summary }}</textarea>
+</div>
+ {% endif %}
+<a href="/" class="btn back-btn">← Back to Home</a>
+</body>
+</html>

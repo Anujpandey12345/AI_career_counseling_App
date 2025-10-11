@@ -5,6 +5,9 @@ from .models import ResumeP
 from .utils import extract_text
 from .openrouter_client import call_openrouter_for_resume
 
+from django.contrib.auth.decorators import login_required
+
+@login_required(login_url='login')
 def upload_resume(request):
     if request.method == 'POST':
         form = ResumeUploadForm(request.POST, request.FILES)
@@ -31,7 +34,10 @@ def upload_resume(request):
     else:
         form = ResumeUploadForm()
     return render(request, 'resume_parser/upload.html', {'form': form})
-
+@login_required(login_url='login')
 def resume_detail(request, pk):
     resume = get_object_or_404(ResumeP, pk=pk)
     return render(request, 'resume_parser/detail.html', {'resume': resume})
+
+
+

@@ -10,4 +10,9 @@ urlpatterns = [
     path('logout/', views.LogoutView, name='logout'),
     path('resume-builder/', views.resume_builder, name='resume_builder'),
     path("resume/<int:resume_id>/download_pdf/", views.download_pdf, name="download_pdf"),
+    path('forget/', views.ForgetPassword, name='Forget_pass'),
+    path('newpass/<str:user>/', views.NewPasswordPage, name='new_pass'),
+    path('stats-api/', views.stats_api, name='stats_api'),
+
+
 ]
