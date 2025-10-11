@@ -207,21 +207,11 @@ body {
 
 .nav-links a:hover {
     color: var(--primary-color);
+    text-decoration: none;
 }
 
 .nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--primary-color);
-    transition: width var(--transition-base);
-}
-
-.nav-links a:hover::after {
-    width: 100%;
+    display: none;
 }
 
 .nav-auth-username {
@@ -339,6 +329,7 @@ body {
     font-family: var(--font-primary);
     position: relative;
     overflow: hidden;
+    text-decoration: none;
 }
 
 .cta-button:not(.secondary) {
@@ -350,6 +341,7 @@ body {
     background: var(--primary-dark);
     transform: translateY(-3px);
     box-shadow: var(--shadow-glow);
+    text-decoration: none;
 }
 
 .cta-button.secondary {
@@ -361,6 +353,7 @@ body {
 .cta-button.secondary:hover {
     background: rgba(139, 92, 246, 0.1);
     transform: translateY(-3px);
+    text-decoration: none;
 }
 
 .hero-stats {
@@ -431,6 +424,7 @@ body {
     backdrop-filter: blur(10px);
     transition: all var(--transition-base);
     cursor: pointer;
+    text-decoration: none;
 }
 
 .feature-card:hover {
@@ -438,6 +432,7 @@ body {
     border-color: var(--primary-color);
     box-shadow: var(--shadow-glow);
     background: rgba(30, 41, 59, 0.8);
+    text-decoration: none;
 }
 
 .feature-icon {
@@ -523,12 +518,14 @@ body {
     cursor: pointer;
     transition: all var(--transition-base);
     font-family: var(--font-primary);
+    text-decoration: none;
 }
 
 .browse-button:hover {
     background: var(--primary-dark);
     transform: translateY(-2px);
     box-shadow: var(--shadow-glow);
+    text-decoration: none;
 }
 
 .file-info {
@@ -553,7 +550,7 @@ body {
 
 .build-link:hover {
     color: var(--primary-light);
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 /* File Preview */
@@ -927,6 +924,7 @@ body {
 
 .footer-section a:hover {
     color: var(--primary-color);
+    text-decoration: none;
 }
 
 .footer-bottom {
