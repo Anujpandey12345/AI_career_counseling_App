@@ -8,7 +8,7 @@ import docx
 from django.contrib.auth.decorators import login_required
 
 # Function to extract text from PDF, DOCX, or TXT
-@login_required(login_url='login')
+
 def extract_resume_text(file):
     # PDF
     if file.name.endswith('.pdf'):
