@@ -3,8 +3,340 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Resume Builder</title>
-    <link rel="stylesheet" href="{% static 'careera/style.css' %}">
+    <style>
+        /* ============================================
+           AI RESUME BUILDER - STYLESHEET
+           ============================================ */
+
+        /* ============================================
+           1. RESET & BASE STYLES
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a0b2e 0%, #2d1654 50%, #1a0b2e 100%);
+            min-height: 100vh;
+            color: #ffffff;
+            padding: 40px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* ============================================
+           2. BACKGROUND DECORATIVE ELEMENTS
+           ============================================ */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -200px;
+            left: -200px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(138, 43, 226, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -250px;
+            right: -250px;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(186, 85, 211, 0.12) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ============================================
+           3. MAIN CONTAINER
+           ============================================ */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(30, 20, 60, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(186, 85, 211, 0.2);
+            border-radius: 24px;
+            padding: 60px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                0 0 80px rgba(186, 85, 211, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ============================================
+           4. TYPOGRAPHY
+           ============================================ */
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff00ff 0%, #ba55d3 50%, #ff00ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 50px;
+            letter-spacing: -1px;
+            text-shadow: 0 0 40px rgba(255, 0, 255, 0.3);
+        }
+
+        h3 {
+            color: #ba55d3;
+            font-size: 1.3rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        /* ============================================
+           5. FORM STRUCTURE
+           ============================================ */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        form p {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* ============================================
+           6. FORM LABELS
+           ============================================ */
+        label {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #e0d4f7;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+        }
+
+        /* ============================================
+           7. FORM INPUTS
+           ============================================ */
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="url"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(45, 22, 84, 0.5);
+            border: 2px solid rgba(186, 85, 211, 0.3);
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        /* Input Focus States */
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        input[type="url"]:focus,
+        input[type="number"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #ba55d3;
+            background: rgba(45, 22, 84, 0.8);
+            box-shadow: 0 0 20px rgba(186, 85, 211, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Textarea Specific */
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+            line-height: 1.6;
+        }
+
+        /* Select Dropdown */
+        select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ba55d3' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            padding-right: 40px;
+        }
+
+        /* ============================================
+           8. AI SUMMARY BOX
+           ============================================ */
+        .ai-box {
+            background: rgba(186, 85, 211, 0.1);
+            border: 2px solid rgba(186, 85, 211, 0.4);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 25px;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            color: #e0d4f7;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-box::before {
+            content: '✨';
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.5rem;
+            opacity: 0.3;
+        }
+
+        /* ============================================
+           9. BUTTONS
+           ============================================ */
+        button {
+            padding: 18px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Generate AI Summary Button */
+        button[name="generate_summary"] {
+            background: linear-gradient(135deg, #ba55d3 0%, #9932cc 100%);
+            color: #ffffff;
+            box-shadow: 0 8px 25px rgba(186, 85, 211, 0.4);
+        }
+
+        button[name="generate_summary"]:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(186, 85, 211, 0.6);
+        }
+
+        button[name="generate_summary"]:active {
+            transform: translateY(-1px);
+        }
+
+        /* Preview Button */
+        button[name="preview"] {
+            background: transparent;
+            color: #ba55d3;
+            border: 2px solid #ba55d3;
+        }
+
+        button[name="preview"]:hover {
+            background: rgba(186, 85, 211, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(186, 85, 211, 0.3);
+        }
+
+        button[name="preview"]:active {
+            transform: translateY(-1px);
+        }
+
+        /* ============================================
+           10. ERROR MESSAGES
+           ============================================ */
+        .errorlist {
+            list-style: none;
+            color: #ff6b9d;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .errorlist li {
+            padding: 8px 12px;
+            background: rgba(255, 107, 157, 0.1);
+            border-left: 3px solid #ff6b9d;
+            border-radius: 4px;
+            margin-bottom: 5px;
+        }
+
+        /* ============================================
+           11. HELP TEXT
+           ============================================ */
+        .helptext {
+            font-size: 0.85rem;
+            color: #b8a4d4;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        /* ============================================
+           12. RESPONSIVE DESIGN - TABLET
+           ============================================ */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 30px;
+                border-radius: 16px;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+                margin-bottom: 35px;
+            }
+
+            button {
+                padding: 16px 30px;
+                font-size: 1rem;
+            }
+        }
+
+        /* ============================================
+           13. RESPONSIVE DESIGN - MOBILE
+           ============================================ */
+        @media (max-width: 480px) {
+            body {
+                padding: 20px 15px;
+            }
+
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+                margin-bottom: 30px;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="tel"],
+            input[type="url"],
+            input[type="number"],
+            textarea,
+            select {
+                padding: 14px 16px;
+                font-size: 0.95rem;
+            }
+
+            button {
+                padding: 14px 25px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -12,10 +344,12 @@
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
+            
             {% if ai_summary %}
-                <h3>AI Generated Summary</h3>
-                <div class="ai-box">{{ ai_summary }}</div>
+            <h3>AI Generated Summary</h3>
+            <div class="ai-box">{{ ai_summary }}</div>
             {% endif %}
+            
             <button type="submit" name="generate_summary">✨ Generate AI Summary</button>
             <button type="submit" name="preview">Preview Resume</button>
         </form>
