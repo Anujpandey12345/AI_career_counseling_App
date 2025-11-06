@@ -1,5 +1,5 @@
 from django.db import models
-
+# This is For Suffestion where we can upload our resume and this models fetch all the resume data
 class ResumeS(models.Model):
     name = models.CharField(max_length=255)
     email = models.EmailField()
