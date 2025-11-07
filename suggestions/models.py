@@ -8,4 +8,4 @@ class ResumeS(models.Model):
     ai_suggestions = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return self.name
+        return self.name # hi is 
